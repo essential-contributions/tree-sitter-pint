@@ -1,0 +1,19 @@
+===
+storage decl
+===
+
+storage {
+  counter: int,
+}
+
+---
+
+(source_file
+  (decl
+    (storage_decl
+      (storage_var
+        (ident)
+        (type
+          (custom_type
+            (path
+              (ident))))))))

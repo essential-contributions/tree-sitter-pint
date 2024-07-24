@@ -1,0 +1,42 @@
+===
+predicate decl
+===
+
+predicate Increment {
+  state counter: int = storage::counter;
+  constraint counter' == counter + 1;
+}
+
+---
+
+(source_file
+  (decl
+    (predicate_decl
+      (ident)
+      (predicate_body
+        (state_decl
+          (ident)
+          (type
+            (custom_type
+              (path
+                (ident))))
+          (state_init
+            (storage_access
+              (ident)))))
+      (predicate_body
+        (constraint_decl
+          (expr
+            (additive_expr
+              (expr
+                (comparison_expr
+                  (expr
+                    (postfix_expr
+                      (expr
+                        (term
+                          (ident)))))
+                  (expr
+                    (term
+                      (ident)))))
+              (expr
+                (term
+                  (number))))))))))

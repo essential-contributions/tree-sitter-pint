@@ -1,0 +1,15 @@
+===
+use stmt
+===
+
+use std::io;
+
+---
+
+(source_file
+  (decl
+    (use_stmt
+      (use_tree
+        (ident)
+        (use_tree
+          (ident))))))

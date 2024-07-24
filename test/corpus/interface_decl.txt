@@ -1,0 +1,37 @@
+===
+interface decl
+===
+
+interface Foo {
+    storage {
+        x: int,
+    }
+
+    predicate I1 {
+        pub var x1: int;
+    }
+}
+
+---
+
+(source_file
+  (decl
+    (interface_decl
+      (ident)
+      (interface_body
+        (storage_block
+          (storage_var
+            (ident)
+            (type
+              (custom_type
+                (path
+                  (ident)))))))
+      (interface_body
+        (predicate_interface
+          (ident)
+          (interface_var
+            (ident)
+            (type
+              (custom_type
+                (path
+                  (ident))))))))))

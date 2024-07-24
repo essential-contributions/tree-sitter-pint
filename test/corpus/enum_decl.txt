@@ -1,0 +1,15 @@
+===
+enum decl
+===
+
+enum Color = Red | Green | Blue;
+
+---
+
+(source_file
+  (decl
+    (enum_decl
+      (ident)
+      (ident)
+      (ident)
+      (ident))))

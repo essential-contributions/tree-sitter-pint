@@ -1,0 +1,16 @@
+===
+new type decl
+===
+
+type Distance = int;
+
+---
+
+(source_file
+  (decl
+    (new_type_decl
+      (ident)
+      (type
+        (custom_type
+          (path
+            (ident)))))))

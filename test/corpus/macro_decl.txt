@@ -1,0 +1,36 @@
+===
+macro decl
+===
+
+macro @foo($x) {
+    var a: int;
+    constraint a == $x;
+}
+
+---
+
+(source_file
+  (decl
+    (macro_decl
+      (macro_name)
+      (macro_param
+        (ident))
+      (block
+        (predicate_body
+          (var_decl
+            (ident)
+            (type
+              (custom_type
+                (path
+                  (ident))))))
+        (predicate_body
+          (constraint_decl
+            (expr
+              (comparison_expr
+                (expr
+                  (term
+                    (ident)))
+                (expr
+                  (term
+                    (macro_param
+                      (ident))))))))))))

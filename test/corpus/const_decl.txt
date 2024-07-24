@@ -1,0 +1,19 @@
+===
+const decl
+===
+
+const X: int = 42;
+
+---
+
+(source_file
+  (decl
+    (const_decl
+      (ident)
+      (type
+        (custom_type
+          (path
+            (ident))))
+      (expr
+        (term
+          (number))))))
