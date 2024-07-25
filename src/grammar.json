@@ -1444,6 +1444,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "hex"
+          },
+          {
+            "type": "SYMBOL",
             "name": "string"
           },
           {
@@ -2346,6 +2350,10 @@
           "value": "b256_ty"
         }
       ]
+    },
+    "hex": {
+      "type": "PATTERN",
+      "value": "0x[0-9a-fA-F]+"
     },
     "custom_type": {
       "type": "SYMBOL",

@@ -944,6 +944,10 @@
           "named": true
         },
         {
+          "type": "hex",
+          "named": true
+        },
+        {
           "type": "ident",
           "named": true
         },
@@ -1312,6 +1316,10 @@
   {
     "type": "forall",
     "named": false
+  },
+  {
+    "type": "hex",
+    "named": true
   },
   {
     "type": "ident",

@@ -118,6 +118,7 @@ module.exports = grammar({
     term: $ => prec(1, choice(
       $.ident,
       $.number,
+      $.hex,
       $.string,
       seq('(', $.expr, ')'),
       $.macro_call_expr,
@@ -198,6 +199,8 @@ module.exports = grammar({
       'string_ty',
       'b256_ty'
     ),
+
+    hex: $ => /0x[0-9a-fA-F]+/,
 
     custom_type: $ => $.path,
 
