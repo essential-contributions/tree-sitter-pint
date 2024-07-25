@@ -50,11 +50,11 @@ module.exports = grammar({
       $.var_decl,
     ),
 
-    storage_decl: $ => seq('storage', '{', sep($.storage_var, ','), '}'),
+    storage_decl: $ => seq('storage', '{', sep($.storage_var, ','), optional(','), '}'),
 
-    storage_var: $ => seq($.ident, ':', $.type, ','),
+    storage_var: $ => seq($.ident, ':', $.type),
 
-    storage_block: $ => seq('storage', '{', sep($.storage_var, ','), '}'),
+    storage_block: $ => seq('storage', '{', sep($.storage_var, ','), optional(','), '}'),
 
     use_stmt: $ => seq('use', optional('::'), $.use_tree, ';'),
 

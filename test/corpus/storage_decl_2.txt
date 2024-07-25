@@ -1,0 +1,26 @@
+===
+storage decl 2
+===
+
+storage {
+  foo: int,
+  bar: int,
+}
+
+---
+
+(source_file
+  (decl
+    (storage_decl
+      (storage_var
+        (ident)
+        (type
+          (custom_type
+            (path
+              (ident)))))
+      (storage_var
+        (ident)
+        (type
+          (custom_type
+            (path
+              (ident))))))))
