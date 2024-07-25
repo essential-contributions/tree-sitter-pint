@@ -2,7 +2,7 @@ module.exports = grammar({
   name: 'pint',
 
   rules: {
-    source_file: $ => repeat($.decl),
+    source_file: $ => repeat(choice($.decl, $.comment)),
 
     decl: $ => choice(
       $.const_decl,
@@ -37,7 +37,7 @@ module.exports = grammar({
 
     new_type_decl: $ => seq('type', $.ident, '=', $.type, ';'),
 
-    predicate_decl: $ => seq('predicate', $.ident, '{', repeat($.predicate_body), '}'),
+    predicate_decl: $ => seq('predicate', $.ident, '{', repeat(choice($.predicate_body, $.comment)), '}'),
 
     predicate_body: $ => choice(
       $.constraint_decl,
@@ -47,7 +47,7 @@ module.exports = grammar({
       $.predicate_instance,
       $.state_decl,
       $.use_stmt,
-      $.var_decl,
+      $.var_decl
     ),
 
     storage_decl: $ => seq('storage', '{', sep($, $.storage_var, ','), optional(','), '}'),

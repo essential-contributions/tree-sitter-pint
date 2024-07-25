@@ -1,0 +1,15 @@
+===
+comments
+===
+
+// foo
+// foo bar
+
+// foo bar baz
+
+---
+
+(source_file
+  (comment)
+  (comment)
+  (comment))
