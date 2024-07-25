@@ -15,46 +15,46 @@ predicate Increment {
 
 (source_file
   (decl
-    (storage_decl
+    (decl_storage
       (storage_var
         (ident)
         (type
-          (custom_type
+          (ty_custom
             (path
               (ident)))))))
   (decl
-    (predicate_decl
+    (decl_pred
       (ident)
-      (predicate_body
-        (state_decl
+      (pred_body
+        (decl_state
           (ident)
           (type
-            (custom_type
+            (ty_custom
               (path
                 (ident))))
           (state_init
             (storage_access
               (ident)))))
-      (predicate_body
-        (constraint_decl
+      (pred_body
+        (decl_constraint
           (expr
-            (additive_expr
+            (expr_additive
               (expr
-                (comparison_expr
+                (expr_cmp
                   (expr
-                    (postfix_expr
+                    (expr_postfix
                       (expr
-                        (logical_or_expr
+                        (expr_logical_or
                           (expr
                             (term
                               (expr
-                                (comparison_expr
+                                (expr_cmp
                                   (expr
-                                    (postfix_expr
+                                    (expr_postfix
                                       (expr
-                                        (logical_and_expr
+                                        (expr_logical_and
                                           (expr
-                                            (comparison_expr
+                                            (expr_cmp
                                               (expr
                                                 (term
                                                   (ident)))
@@ -66,7 +66,8 @@ predicate Increment {
                                               (ident)))))))
                                   (expr
                                     (term
-                                      (number)))))))
+                                      (lit
+                                        (number))))))))
                           (expr
                             (term
                               (ident)))))))
@@ -75,4 +76,5 @@ predicate Increment {
                       (ident)))))
               (expr
                 (term
-                  (number))))))))))
+                  (lit
+                    (number)))))))))))

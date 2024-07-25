@@ -38,35 +38,35 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "const_decl"
+          "name": "decl_const"
         },
         {
           "type": "SYMBOL",
-          "name": "enum_decl"
+          "name": "decl_enum"
         },
         {
           "type": "SYMBOL",
-          "name": "interface_decl"
+          "name": "decl_iface"
         },
         {
           "type": "SYMBOL",
-          "name": "macro_call_decl"
+          "name": "decl_macro_call"
         },
         {
           "type": "SYMBOL",
-          "name": "macro_decl"
+          "name": "decl_macro"
         },
         {
           "type": "SYMBOL",
-          "name": "new_type_decl"
+          "name": "decl_new_ty"
         },
         {
           "type": "SYMBOL",
-          "name": "predicate_decl"
+          "name": "decl_pred"
         },
         {
           "type": "SYMBOL",
-          "name": "storage_decl"
+          "name": "decl_storage"
         },
         {
           "type": "SYMBOL",
@@ -74,7 +74,7 @@
         }
       ]
     },
-    "const_decl": {
+    "decl_const": {
       "type": "SEQ",
       "members": [
         {
@@ -120,7 +120,7 @@
         }
       ]
     },
-    "enum_decl": {
+    "decl_enum": {
       "type": "SEQ",
       "members": [
         {
@@ -178,7 +178,7 @@
         }
       ]
     },
-    "interface_decl": {
+    "decl_iface": {
       "type": "SEQ",
       "members": [
         {
@@ -197,7 +197,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "interface_body"
+            "name": "iface_body"
           }
         },
         {
@@ -206,7 +206,7 @@
         }
       ]
     },
-    "interface_body": {
+    "iface_body": {
       "type": "CHOICE",
       "members": [
         {
@@ -215,11 +215,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "predicate_interface"
+          "name": "pred_iface"
         }
       ]
     },
-    "predicate_interface": {
+    "pred_iface": {
       "type": "SEQ",
       "members": [
         {
@@ -238,7 +238,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "interface_var"
+            "name": "iface_var"
           }
         },
         {
@@ -247,7 +247,7 @@
         }
       ]
     },
-    "interface_var": {
+    "iface_var": {
       "type": "SEQ",
       "members": [
         {
@@ -276,12 +276,12 @@
         }
       ]
     },
-    "macro_call_decl": {
+    "decl_macro_call": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "macro_call_expr"
+          "name": "expr_macro_call"
         },
         {
           "type": "STRING",
@@ -289,7 +289,7 @@
         }
       ]
     },
-    "macro_decl": {
+    "decl_macro": {
       "type": "SEQ",
       "members": [
         {
@@ -359,7 +359,7 @@
         }
       ]
     },
-    "new_type_decl": {
+    "decl_new_ty": {
       "type": "SEQ",
       "members": [
         {
@@ -384,7 +384,7 @@
         }
       ]
     },
-    "predicate_decl": {
+    "decl_pred": {
       "type": "SEQ",
       "members": [
         {
@@ -410,7 +410,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "predicate_body"
+                "name": "pred_body"
               }
             ]
           }
@@ -421,32 +421,32 @@
         }
       ]
     },
-    "predicate_body": {
+    "pred_body": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "constraint_decl"
+          "name": "decl_constraint"
         },
         {
           "type": "SYMBOL",
-          "name": "if_decl"
+          "name": "decl_if"
         },
         {
           "type": "SYMBOL",
-          "name": "interface_instance"
+          "name": "iface_instance"
         },
         {
           "type": "SYMBOL",
-          "name": "macro_call_decl"
+          "name": "decl_macro_call"
         },
         {
           "type": "SYMBOL",
-          "name": "predicate_instance"
+          "name": "pred_instance"
         },
         {
           "type": "SYMBOL",
-          "name": "state_decl"
+          "name": "decl_state"
         },
         {
           "type": "SYMBOL",
@@ -454,11 +454,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "var_decl"
+          "name": "decl_var"
         }
       ]
     },
-    "storage_decl": {
+    "decl_storage": {
       "type": "SEQ",
       "members": [
         {
@@ -753,7 +753,7 @@
         }
       ]
     },
-    "constraint_decl": {
+    "decl_constraint": {
       "type": "SEQ",
       "members": [
         {
@@ -770,7 +770,7 @@
         }
       ]
     },
-    "if_decl": {
+    "decl_if": {
       "type": "SEQ",
       "members": [
         {
@@ -804,7 +804,7 @@
                     },
                     {
                       "type": "SYMBOL",
-                      "name": "if_decl"
+                      "name": "decl_if"
                     }
                   ]
                 }
@@ -817,7 +817,7 @@
         }
       ]
     },
-    "interface_instance": {
+    "iface_instance": {
       "type": "SEQ",
       "members": [
         {
@@ -854,7 +854,7 @@
         }
       ]
     },
-    "predicate_instance": {
+    "pred_instance": {
       "type": "SEQ",
       "members": [
         {
@@ -936,7 +936,7 @@
         }
       ]
     },
-    "state_decl": {
+    "decl_state": {
       "type": "SEQ",
       "members": [
         {
@@ -982,7 +982,7 @@
         }
       ]
     },
-    "var_decl": {
+    "decl_var": {
       "type": "SEQ",
       "members": [
         {
@@ -1071,7 +1071,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "predicate_body"
+                "name": "pred_body"
               }
             ]
           }
@@ -1087,35 +1087,35 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "select_expr"
+          "name": "expr_select"
         },
         {
           "type": "SYMBOL",
-          "name": "logical_or_expr"
+          "name": "expr_logical_or"
         },
         {
           "type": "SYMBOL",
-          "name": "logical_and_expr"
+          "name": "expr_logical_and"
         },
         {
           "type": "SYMBOL",
-          "name": "comparison_expr"
+          "name": "expr_cmp"
         },
         {
           "type": "SYMBOL",
-          "name": "additive_expr"
+          "name": "expr_additive"
         },
         {
           "type": "SYMBOL",
-          "name": "multiplicative_expr"
+          "name": "expr_multiplicative"
         },
         {
           "type": "SYMBOL",
-          "name": "unary_expr"
+          "name": "expr_unary"
         },
         {
           "type": "SYMBOL",
-          "name": "postfix_expr"
+          "name": "expr_postfix"
         },
         {
           "type": "SYMBOL",
@@ -1123,7 +1123,7 @@
         }
       ]
     },
-    "select_expr": {
+    "expr_select": {
       "type": "PREC_RIGHT",
       "value": 0,
       "content": {
@@ -1152,7 +1152,7 @@
         ]
       }
     },
-    "logical_or_expr": {
+    "expr_logical_or": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -1173,7 +1173,7 @@
         ]
       }
     },
-    "logical_and_expr": {
+    "expr_logical_and": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -1194,7 +1194,7 @@
         ]
       }
     },
-    "comparison_expr": {
+    "expr_cmp": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -1240,7 +1240,7 @@
         ]
       }
     },
-    "additive_expr": {
+    "expr_additive": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -1270,7 +1270,7 @@
         ]
       }
     },
-    "multiplicative_expr": {
+    "expr_multiplicative": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -1304,7 +1304,7 @@
         ]
       }
     },
-    "unary_expr": {
+    "expr_unary": {
       "type": "PREC_RIGHT",
       "value": 0,
       "content": {
@@ -1334,7 +1334,7 @@
         ]
       }
     },
-    "postfix_expr": {
+    "expr_postfix": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -1440,15 +1440,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "number"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "hex"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "string"
+            "name": "lit"
           },
           {
             "type": "SEQ",
@@ -1469,23 +1461,23 @@
           },
           {
             "type": "SYMBOL",
-            "name": "macro_call_expr"
+            "name": "expr_macro_call"
           },
           {
             "type": "SYMBOL",
-            "name": "cond_expr"
+            "name": "expr_cond"
           },
           {
             "type": "SYMBOL",
-            "name": "generator_expr"
+            "name": "expr_generator"
           },
           {
             "type": "SYMBOL",
-            "name": "array_expr"
+            "name": "expr_array"
           },
           {
             "type": "SYMBOL",
-            "name": "tuple_expr"
+            "name": "expr_tuple"
           },
           {
             "type": "SYMBOL",
@@ -1498,7 +1490,24 @@
         ]
       }
     },
-    "cond_expr": {
+    "lit": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hex"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        }
+      ]
+    },
+    "expr_cond": {
       "type": "SEQ",
       "members": [
         {
@@ -1598,7 +1607,7 @@
         }
       ]
     },
-    "generator_expr": {
+    "expr_generator": {
       "type": "CHOICE",
       "members": [
         {
@@ -1844,7 +1853,7 @@
         }
       ]
     },
-    "array_expr": {
+    "expr_array": {
       "type": "SEQ",
       "members": [
         {
@@ -1902,7 +1911,7 @@
         }
       ]
     },
-    "tuple_expr": {
+    "expr_tuple": {
       "type": "SEQ",
       "members": [
         {
@@ -1917,7 +1926,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "tuple_expr_field"
+                  "name": "expr_tuple_field"
                 },
                 {
                   "type": "REPEAT",
@@ -1942,7 +1951,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "tuple_expr_field"
+                        "name": "expr_tuple_field"
                       }
                     ]
                   }
@@ -1972,7 +1981,7 @@
         }
       ]
     },
-    "tuple_expr_field": {
+    "expr_tuple_field": {
       "type": "CHOICE",
       "members": [
         {
@@ -2028,7 +2037,7 @@
         }
       ]
     },
-    "macro_call_expr": {
+    "expr_macro_call": {
       "type": "SEQ",
       "members": [
         {
@@ -2167,27 +2176,27 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "primitive_type"
+          "name": "ty_prim"
         },
         {
           "type": "SYMBOL",
-          "name": "custom_type"
+          "name": "ty_custom"
         },
         {
           "type": "SYMBOL",
-          "name": "array_type"
+          "name": "ty_array"
         },
         {
           "type": "SYMBOL",
-          "name": "tuple_type"
+          "name": "ty_tuple"
         },
         {
           "type": "SYMBOL",
-          "name": "map_type"
+          "name": "ty_map"
         }
       ]
     },
-    "array_type": {
+    "ty_array": {
       "type": "CHOICE",
       "members": [
         {
@@ -2230,7 +2239,7 @@
         }
       ]
     },
-    "tuple_type": {
+    "ty_tuple": {
       "type": "SEQ",
       "members": [
         {
@@ -2245,7 +2254,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "tuple_type_field"
+                  "name": "ty_tuple_field"
                 },
                 {
                   "type": "REPEAT",
@@ -2270,7 +2279,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "tuple_type_field"
+                        "name": "ty_tuple_field"
                       }
                     ]
                   }
@@ -2300,7 +2309,7 @@
         }
       ]
     },
-    "tuple_type_field": {
+    "ty_tuple_field": {
       "type": "CHOICE",
       "members": [
         {
@@ -2326,28 +2335,28 @@
         }
       ]
     },
-    "primitive_type": {
+    "ty_prim": {
       "type": "CHOICE",
       "members": [
         {
           "type": "STRING",
-          "value": "int_ty"
+          "value": "ty_int"
         },
         {
           "type": "STRING",
-          "value": "real_ty"
+          "value": "ty_real"
         },
         {
           "type": "STRING",
-          "value": "bool_ty"
+          "value": "ty_bool"
         },
         {
           "type": "STRING",
-          "value": "string_ty"
+          "value": "ty_string"
         },
         {
           "type": "STRING",
-          "value": "b256_ty"
+          "value": "ty_b256"
         }
       ]
     },
@@ -2355,11 +2364,11 @@
       "type": "PATTERN",
       "value": "0x[0-9a-fA-F]+"
     },
-    "custom_type": {
+    "ty_custom": {
       "type": "SYMBOL",
       "name": "path"
     },
-    "map_type": {
+    "ty_map": {
       "type": "SEQ",
       "members": [
         {

@@ -10,10 +10,10 @@ storage {
 
 (source_file
   (decl
-    (storage_decl
+    (decl_storage
       (storage_var
         (ident)
         (type
-          (custom_type
+          (ty_custom
             (path
               (ident))))))))

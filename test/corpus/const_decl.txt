@@ -8,12 +8,13 @@ const X: int = 42;
 
 (source_file
   (decl
-    (const_decl
+    (decl_const
       (ident)
       (type
-        (custom_type
+        (ty_custom
           (path
             (ident))))
       (expr
         (term
-          (number))))))
+          (lit
+            (number)))))))

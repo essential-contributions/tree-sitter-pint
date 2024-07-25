@@ -16,22 +16,22 @@ interface Foo {
 
 (source_file
   (decl
-    (interface_decl
+    (decl_iface
       (ident)
-      (interface_body
+      (iface_body
         (storage_block
           (storage_var
             (ident)
             (type
-              (custom_type
+              (ty_custom
                 (path
                   (ident)))))))
-      (interface_body
-        (predicate_interface
+      (iface_body
+        (pred_iface
           (ident)
-          (interface_var
+          (iface_var
             (ident)
             (type
-              (custom_type
+              (ty_custom
                 (path
                   (ident))))))))))

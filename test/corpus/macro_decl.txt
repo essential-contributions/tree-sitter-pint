@@ -11,22 +11,22 @@ macro @foo($x) {
 
 (source_file
   (decl
-    (macro_decl
+    (decl_macro
       (macro_name)
       (macro_param
         (ident))
       (block
-        (predicate_body
-          (var_decl
+        (pred_body
+          (decl_var
             (ident)
             (type
-              (custom_type
+              (ty_custom
                 (path
                   (ident))))))
-        (predicate_body
-          (constraint_decl
+        (pred_body
+          (decl_constraint
             (expr
-              (comparison_expr
+              (expr_cmp
                 (expr
                   (term
                     (ident)))

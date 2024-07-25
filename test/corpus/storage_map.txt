@@ -11,34 +11,34 @@ storage {
 
 (source_file
   (decl
-    (storage_decl
+    (decl_storage
       (storage_var
         (ident)
         (type
-          (map_type
+          (ty_map
             (type
-              (custom_type
+              (ty_custom
                 (path
                   (ident))))
             (type
-              (custom_type
+              (ty_custom
                 (path
                   (ident)))))))
       (storage_var
         (ident)
         (type
-          (map_type
+          (ty_map
             (type
-              (custom_type
+              (ty_custom
                 (path
                   (ident))))
             (type
-              (map_type
+              (ty_map
                 (type
-                  (custom_type
+                  (ty_custom
                     (path
                       (ident))))
                 (type
-                  (custom_type
+                  (ty_custom
                     (path
                       (ident))))))))))))

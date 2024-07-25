@@ -7,52 +7,52 @@ module.exports = grammar({
     comment: $ => token(seq('//', /.*/)),
 
     decl: $ => choice(
-      $.const_decl,
-      $.enum_decl,
-      $.interface_decl,
-      $.macro_call_decl,
-      $.macro_decl,
-      $.new_type_decl,
-      $.predicate_decl,
-      $.storage_decl,
+      $.decl_const,
+      $.decl_enum,
+      $.decl_iface,
+      $.decl_macro_call,
+      $.decl_macro,
+      $.decl_new_ty,
+      $.decl_pred,
+      $.decl_storage,
       $.use_stmt,
     ),
 
-    const_decl: $ => seq('const', $.ident, optional(seq(':', $.type)), '=', $.expr, ';'),
+    decl_const: $ => seq('const', $.ident, optional(seq(':', $.type)), '=', $.expr, ';'),
 
-    enum_decl: $ => seq('enum', $.ident, '=', sep1($, $.ident, '|'), ';'),
+    decl_enum: $ => seq('enum', $.ident, '=', sep1($, $.ident, '|'), ';'),
 
-    interface_decl: $ => seq('interface', $.ident, '{', repeat($.interface_body), '}'),
+    decl_iface: $ => seq('interface', $.ident, '{', repeat($.iface_body), '}'),
 
-    interface_body: $ => choice(
+    iface_body: $ => choice(
       $.storage_block,
-      $.predicate_interface
+      $.pred_iface
     ),
 
-    predicate_interface: $ => seq('predicate', $.ident, '{', repeat($.interface_var), '}'),
+    pred_iface: $ => seq('predicate', $.ident, '{', repeat($.iface_var), '}'),
 
-    interface_var: $ => seq('pub', 'var', $.ident, ':', $.type, ';'),
+    iface_var: $ => seq('pub', 'var', $.ident, ':', $.type, ';'),
 
-    macro_call_decl: $ => seq($.macro_call_expr, ';'),
+    decl_macro_call: $ => seq($.expr_macro_call, ';'),
 
-    macro_decl: $ => seq('macro', $.macro_name, '(', sep($, $.macro_param, ','), ')', $.block),
+    decl_macro: $ => seq('macro', $.macro_name, '(', sep($, $.macro_param, ','), ')', $.block),
 
-    new_type_decl: $ => seq('type', $.ident, '=', $.type, ';'),
+    decl_new_ty: $ => seq('type', $.ident, '=', $.type, ';'),
 
-    predicate_decl: $ => seq('predicate', $.ident, '{', repeat(choice($.comment, $.predicate_body)), '}'),
+    decl_pred: $ => seq('predicate', $.ident, '{', repeat(choice($.comment, $.pred_body)), '}'),
 
-    predicate_body: $ => choice(
-      $.constraint_decl,
-      $.if_decl,
-      $.interface_instance,
-      $.macro_call_decl,
-      $.predicate_instance,
-      $.state_decl,
+    pred_body: $ => choice(
+      $.decl_constraint,
+      $.decl_if,
+      $.iface_instance,
+      $.decl_macro_call,
+      $.pred_instance,
+      $.decl_state,
       $.use_stmt,
-      $.var_decl,
+      $.decl_var,
     ),
 
-    storage_decl: $ => seq('storage', '{', sep($, $.storage_var, ','), optional(','), '}'),
+    decl_storage: $ => seq('storage', '{', sep($, $.storage_var, ','), optional(','), '}'),
 
     storage_var: $ => seq($.ident, ':', $.type),
 
@@ -67,47 +67,47 @@ module.exports = grammar({
       seq($.ident, 'as', $.ident)
     ),
 
-    constraint_decl: $ => seq('constraint', $.expr, ';'),
+    decl_constraint: $ => seq('constraint', $.expr, ';'),
 
-    if_decl: $ => seq('if', $.expr, $.block, optional(seq('else', choice($.block, $.if_decl)))),
+    decl_if: $ => seq('if', $.expr, $.block, optional(seq('else', choice($.block, $.decl_if)))),
 
-    interface_instance: $ => seq('interface', $.ident, '=', $.path, '(', $.expr, ')', ';'),
+    iface_instance: $ => seq('interface', $.ident, '=', $.path, '(', $.expr, ')', ';'),
 
-    predicate_instance: $ => seq('predicate', $.ident, '=', optional('::'), sep1($, $.ident, '::'), '(', $.expr, ')', ';'),
+    pred_instance: $ => seq('predicate', $.ident, '=', optional('::'), sep1($, $.ident, '::'), '(', $.expr, ')', ';'),
 
-    state_decl: $ => seq('state', $.ident, optional(seq(':', $.type)), '=', $.state_init, ';'),
+    decl_state: $ => seq('state', $.ident, optional(seq(':', $.type)), '=', $.state_init, ';'),
 
-    var_decl: $ => seq(optional('pub'), 'var', $.ident, optional(seq(':', $.type)), optional(seq('=', $.expr)), ';'),
+    decl_var: $ => seq(optional('pub'), 'var', $.ident, optional(seq(':', $.type)), optional(seq('=', $.expr)), ';'),
 
-    block: $ => seq('{', repeat(choice($.comment, $.predicate_body)), '}'),
+    block: $ => seq('{', repeat(choice($.comment, $.pred_body)), '}'),
 
     expr: $ => choice(
-      $.select_expr,
-      $.logical_or_expr,
-      $.logical_and_expr,
-      $.comparison_expr,
-      $.additive_expr,
-      $.multiplicative_expr,
-      $.unary_expr,
-      $.postfix_expr,
+      $.expr_select,
+      $.expr_logical_or,
+      $.expr_logical_and,
+      $.expr_cmp,
+      $.expr_additive,
+      $.expr_multiplicative,
+      $.expr_unary,
+      $.expr_postfix,
       $.term,
     ),
 
-    select_expr: $ => prec.right(seq($.expr, '?', $.expr, ':', $.expr)),
+    expr_select: $ => prec.right(seq($.expr, '?', $.expr, ':', $.expr)),
 
-    logical_or_expr: $ => prec.left(seq($.expr, '||', $.expr)),
+    expr_logical_or: $ => prec.left(seq($.expr, '||', $.expr)),
 
-    logical_and_expr: $ => prec.left(seq($.expr, '&&', $.expr)),
+    expr_logical_and: $ => prec.left(seq($.expr, '&&', $.expr)),
 
-    comparison_expr: $ => prec.left(seq($.expr, choice('==', '!=', '<', '<=', '>', '>='), $.expr)),
+    expr_cmp: $ => prec.left(seq($.expr, choice('==', '!=', '<', '<=', '>', '>='), $.expr)),
 
-    additive_expr: $ => prec.left(seq($.expr, choice('+', '-'), $.expr)),
+    expr_additive: $ => prec.left(seq($.expr, choice('+', '-'), $.expr)),
 
-    multiplicative_expr: $ => prec.left(seq($.expr, choice('*', '/', '%'), $.expr)),
+    expr_multiplicative: $ => prec.left(seq($.expr, choice('*', '/', '%'), $.expr)),
 
-    unary_expr: $ => prec.right(seq(choice('+', '-', '!'), $.expr)),
+    expr_unary: $ => prec.right(seq(choice('+', '-', '!'), $.expr)),
 
-    postfix_expr: $ => prec.left(choice(
+    expr_postfix: $ => prec.left(choice(
       seq($.expr, '[', $.expr, ']'),
       seq($.expr, '[', ']'),
       seq($.expr, '.', $.ident),
@@ -117,37 +117,41 @@ module.exports = grammar({
 
     term: $ => prec(1, choice(
       $.ident,
-      $.number,
-      $.hex,
-      $.string,
+      $.lit,
       seq('(', $.expr, ')'),
-      $.macro_call_expr,
-      $.cond_expr,
-      $.generator_expr,
-      $.array_expr,
-      $.tuple_expr,
+      $.expr_macro_call,
+      $.expr_cond,
+      $.expr_generator,
+      $.expr_array,
+      $.expr_tuple,
       $.path,
       $.macro_param
     )),
 
-    cond_expr: $ => seq('cond', '{', sep($, $.cond_branch, ','), $.else_branch, '}'),
+    lit: $ => choice(
+      $.number,
+      $.hex,
+      $.string,
+    ),
+
+    expr_cond: $ => seq('cond', '{', sep($, $.cond_branch, ','), $.else_branch, '}'),
 
     cond_branch: $ => seq($.expr, '=>', $.expr),
 
     else_branch: $ => seq('else', '=>', $.expr),
 
-    generator_expr: $ => choice(
+    expr_generator: $ => choice(
       seq('forall', sep1($, $.generator_range, ','), optional(seq('where', sep1($, $.expr, ','))), '{', $.expr, '}'),
       seq('exists', sep1($, $.generator_range, ','), optional(seq('where', sep1($, $.expr, ','))), '{', $.expr, '}')
     ),
 
     generator_range: $ => seq($.ident, 'in', $.expr),
 
-    array_expr: $ => seq('[', sep($, $.expr, ','), ']'),
+    expr_array: $ => seq('[', sep($, $.expr, ','), ']'),
 
-    tuple_expr: $ => seq('{', sep($, $.tuple_expr_field, ','), optional(','), '}'),
+    expr_tuple: $ => seq('{', sep($, $.expr_tuple_field, ','), optional(','), '}'),
 
-    tuple_expr_field: $ => choice(
+    expr_tuple_field: $ => choice(
       seq($.ident, ':', $.expr),
       $.expr
     ),
@@ -159,7 +163,7 @@ module.exports = grammar({
 
     storage_access: $ => seq('storage', '::', $.ident),
 
-    macro_call_expr: $ => seq($.macro_path, optional('macro_tag'), $.macro_args),
+    expr_macro_call: $ => seq($.macro_path, optional('macro_tag'), $.macro_args),
 
     macro_path: $ => seq('@', $.path),
 
@@ -173,38 +177,38 @@ module.exports = grammar({
     ),
 
     type: $ => choice(
-      $.primitive_type,
-      $.custom_type,
-      $.array_type,
-      $.tuple_type,
-      $.map_type,
+      $.ty_prim,
+      $.ty_custom,
+      $.ty_array,
+      $.ty_tuple,
+      $.ty_map,
     ),
 
-    array_type: $ => choice(
+    ty_array: $ => choice(
       seq($.type, '[', $.type, ']'),
       seq($.type, '[', ']'),
     ),
 
-    tuple_type: $ => seq('{', sep($, $.tuple_type_field, ','), optional(','), '}'),
+    ty_tuple: $ => seq('{', sep($, $.ty_tuple_field, ','), optional(','), '}'),
 
-    tuple_type_field: $ => choice(
+    ty_tuple_field: $ => choice(
       seq($.ident, ':', $.type),
       $.type
     ),
 
-    primitive_type: $ => choice(
-      'int_ty',
-      'real_ty',
-      'bool_ty',
-      'string_ty',
-      'b256_ty'
+    ty_prim: $ => choice(
+      'ty_int',
+      'ty_real',
+      'ty_bool',
+      'ty_string',
+      'ty_b256'
     ),
 
     hex: $ => /0x[0-9a-fA-F]+/,
 
-    custom_type: $ => $.path,
+    ty_custom: $ => $.path,
 
-    map_type: $ => seq('(', $.type, '=>', $.type, ')'),
+    ty_map: $ => seq('(', $.type, '=>', $.type, ')'),
 
     ident: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 

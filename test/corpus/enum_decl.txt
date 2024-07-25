@@ -8,7 +8,7 @@ enum Color = Red | Green | Blue;
 
 (source_file
   (decl
-    (enum_decl
+    (decl_enum
       (ident)
       (ident)
       (ident)

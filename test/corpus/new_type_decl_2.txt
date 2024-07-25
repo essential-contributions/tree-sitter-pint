@@ -15,33 +15,33 @@ type Baz = int;
 
 (source_file
   (decl
-    (new_type_decl
+    (decl_new_ty
       (ident)
       (type
-        (tuple_type
-          (tuple_type_field
+        (ty_tuple
+          (ty_tuple_field
             (ident)
             (type
-              (custom_type
+              (ty_custom
                 (path
                   (ident)))))
-          (tuple_type_field
+          (ty_tuple_field
             (ident)
             (type
-              (custom_type
+              (ty_custom
                 (path
                   (ident)))))))))
   (decl
-    (new_type_decl
+    (decl_new_ty
       (ident)
       (type
-        (custom_type
+        (ty_custom
           (path
             (ident))))))
   (decl
-    (new_type_decl
+    (decl_new_ty
       (ident)
       (type
-        (custom_type
+        (ty_custom
           (path
             (ident)))))))
