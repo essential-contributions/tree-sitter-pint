@@ -37,7 +37,7 @@ module.exports = grammar({
 
     new_type_decl: $ => seq('type', $.ident, '=', $.type, ';'),
 
-    predicate_decl: $ => seq('predicate', $.ident, '{', repeat(choice($.predicate_body, $.comment)), '}'),
+    predicate_decl: $ => seq('predicate', $.ident, '{', repeat($.predicate_body), '}'),
 
     predicate_body: $ => choice(
       $.constraint_decl,
@@ -47,7 +47,7 @@ module.exports = grammar({
       $.predicate_instance,
       $.state_decl,
       $.use_stmt,
-      $.var_decl
+      $.var_decl,
     ),
 
     storage_decl: $ => seq('storage', '{', sep($, $.storage_var, ','), optional(','), '}'),
@@ -145,8 +145,8 @@ module.exports = grammar({
     tuple_expr: $ => seq('{', sep($, $.tuple_field, ','), '}'),
 
     tuple_field: $ => choice(
-      seq($.ident, ':', $.expr),
-      $.expr
+      seq($.ident, ':', $.type),
+      $.type
     ),
 
     state_init: $ => choice(
@@ -174,7 +174,7 @@ module.exports = grammar({
       $.custom_type,
       seq($.type, '[', $.expr, ']'),
       seq($.type, '[', ']'),
-      seq('{', sep($, $.tuple_field, ','), '}'),
+      seq('{', sep($, $.tuple_field, ','), optional(','), '}'),
     ),
 
     primitive_type: $ => choice(

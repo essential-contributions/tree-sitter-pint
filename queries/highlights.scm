@@ -16,6 +16,7 @@
   "pub"
   "state"
   "storage"
+  "type"
   "use"
   "var"
   "where"

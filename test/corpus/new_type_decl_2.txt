@@ -1,0 +1,46 @@
+===
+new type decl 2
+===
+
+type Foo = {
+	bar: int,
+	baz: int,
+};
+
+type Bar = Foo;
+
+type Baz = int;
+
+---
+
+(source_file
+  (decl
+    (new_type_decl
+      (ident)
+      (type
+        (tuple_field
+          (ident)
+          (type
+            (custom_type
+              (path
+                (ident)))))
+        (tuple_field
+          (ident)
+          (type
+            (custom_type
+              (path
+                (ident))))))))
+  (decl
+    (new_type_decl
+      (ident)
+      (type
+        (custom_type
+          (path
+            (ident))))))
+  (decl
+    (new_type_decl
+      (ident)
+      (type
+        (custom_type
+          (path
+            (ident)))))))

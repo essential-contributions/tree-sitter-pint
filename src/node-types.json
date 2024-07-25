@@ -676,10 +676,6 @@
       "required": true,
       "types": [
         {
-          "type": "comment",
-          "named": true
-        },
-        {
           "type": "ident",
           "named": true
         },
@@ -968,11 +964,11 @@
       "required": true,
       "types": [
         {
-          "type": "expr",
+          "type": "ident",
           "named": true
         },
         {
-          "type": "ident",
+          "type": "type",
           "named": true
         }
       ]
