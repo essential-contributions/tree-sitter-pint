@@ -957,7 +957,26 @@
           "named": true
         },
         {
-          "type": "tuple_field",
+          "type": "tuple_expr_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tuple_expr_field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expr",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         }
       ]

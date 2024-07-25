@@ -2,7 +2,9 @@ module.exports = grammar({
   name: 'pint',
 
   rules: {
-    source_file: $ => repeat(choice($.decl, $.comment)),
+    source_file: $ => repeat(choice($.comment, $.decl)),
+
+    comment: $ => token(seq('//', /.*/)),
 
     decl: $ => choice(
       $.const_decl,
@@ -37,10 +39,9 @@ module.exports = grammar({
 
     new_type_decl: $ => seq('type', $.ident, '=', $.type, ';'),
 
-    predicate_decl: $ => seq('predicate', $.ident, '{', repeat($.predicate_body), '}'),
+    predicate_decl: $ => seq('predicate', $.ident, '{', repeat(choice($.comment, $.predicate_body)), '}'),
 
     predicate_body: $ => choice(
-      $.comment,
       $.constraint_decl,
       $.if_decl,
       $.interface_instance,
@@ -78,7 +79,7 @@ module.exports = grammar({
 
     var_decl: $ => seq(optional('pub'), 'var', $.ident, optional(seq(':', $.type)), optional(seq('=', $.expr)), ';'),
 
-    block: $ => seq('{', repeat($.predicate_body), '}'),
+    block: $ => seq('{', repeat(choice($.comment, $.predicate_body)), '}'),
 
     expr: $ => choice(
       $.select_expr,
@@ -143,7 +144,12 @@ module.exports = grammar({
 
     array_expr: $ => seq('[', sep($, $.expr, ','), ']'),
 
-    tuple_expr: $ => seq('{', sep($, $.tuple_field, ','), optional(','), '}'),
+    tuple_expr: $ => seq('{', sep($, $.tuple_expr_field, ','), optional(','), '}'),
+
+    tuple_expr_field: $ => choice(
+      seq($.ident, ':', $.expr),
+      $.expr
+    ),
 
     tuple_field: $ => choice(
       seq($.ident, ':', $.type),
@@ -197,8 +203,6 @@ module.exports = grammar({
     string: $ => /"([^"\\]|\\.)*"/,
 
     macro_name: $ => /@[a-zA-Z_][a-zA-Z0-9_]*/,
-
-    comment: $ => token(seq('//', /.*/)),
   }
 });
 
