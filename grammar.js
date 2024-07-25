@@ -18,7 +18,7 @@ module.exports = grammar({
 
     const_decl: $ => seq('const', $.ident, optional(seq(':', $.type)), '=', $.expr, ';'),
 
-    enum_decl: $ => seq('enum', $.ident, '=', sep1($.ident, '|'), ';'),
+    enum_decl: $ => seq('enum', $.ident, '=', sep1($, $.ident, '|'), ';'),
 
     interface_decl: $ => seq('interface', $.ident, '{', repeat($.interface_body), '}'),
 
@@ -33,7 +33,7 @@ module.exports = grammar({
 
     macro_call_decl: $ => seq($.macro_call_expr, ';'),
 
-    macro_decl: $ => seq('macro', $.macro_name, '(', sep($.macro_param, ','), ')', $.block),
+    macro_decl: $ => seq('macro', $.macro_name, '(', sep($, $.macro_param, ','), ')', $.block),
 
     new_type_decl: $ => seq('type', $.ident, '=', $.type, ';'),
 
@@ -50,18 +50,18 @@ module.exports = grammar({
       $.var_decl,
     ),
 
-    storage_decl: $ => seq('storage', '{', sep($.storage_var, ','), optional(','), '}'),
+    storage_decl: $ => seq('storage', '{', sep($, $.storage_var, ','), optional(','), '}'),
 
     storage_var: $ => seq($.ident, ':', $.type),
 
-    storage_block: $ => seq('storage', '{', sep($.storage_var, ','), optional(','), '}'),
+    storage_block: $ => seq('storage', '{', sep($, $.storage_var, ','), optional(','), '}'),
 
     use_stmt: $ => seq('use', optional('::'), $.use_tree, ';'),
 
     use_tree: $ => choice(
       $.ident,
       seq($.ident, '::', $.use_tree),
-      seq('{', sep($.use_tree, ','), '}'),
+      seq('{', sep($, $.use_tree, ','), '}'),
       seq($.ident, 'as', $.ident)
     ),
 
@@ -71,7 +71,7 @@ module.exports = grammar({
 
     interface_instance: $ => seq('interface', $.ident, '=', $.path, '(', $.expr, ')', ';'),
 
-    predicate_instance: $ => seq('predicate', $.ident, '=', optional('::'), sep1($.ident, '::'), '(', $.expr, ')', ';'),
+    predicate_instance: $ => seq('predicate', $.ident, '=', optional('::'), sep1($, $.ident, '::'), '(', $.expr, ')', ';'),
 
     state_decl: $ => seq('state', $.ident, optional(seq(':', $.type)), '=', $.state_init, ';'),
 
@@ -127,22 +127,22 @@ module.exports = grammar({
       $.macro_param
     )),
 
-    cond_expr: $ => seq('cond', '{', sep($.cond_branch, ','), $.else_branch, '}'),
+    cond_expr: $ => seq('cond', '{', sep($, $.cond_branch, ','), $.else_branch, '}'),
 
     cond_branch: $ => seq($.expr, '=>', $.expr),
 
     else_branch: $ => seq('else', '=>', $.expr),
 
     generator_expr: $ => choice(
-      seq('forall', sep1($.generator_range, ','), optional(seq('where', sep1($.expr, ','))), '{', $.expr, '}'),
-      seq('exists', sep1($.generator_range, ','), optional(seq('where', sep1($.expr, ','))), '{', $.expr, '}')
+      seq('forall', sep1($, $.generator_range, ','), optional(seq('where', sep1($, $.expr, ','))), '{', $.expr, '}'),
+      seq('exists', sep1($, $.generator_range, ','), optional(seq('where', sep1($, $.expr, ','))), '{', $.expr, '}')
     ),
 
     generator_range: $ => seq($.ident, 'in', $.expr),
 
-    array_expr: $ => seq('[', sep($.expr, ','), ']'),
+    array_expr: $ => seq('[', sep($, $.expr, ','), ']'),
 
-    tuple_expr: $ => seq('{', sep($.tuple_field, ','), '}'),
+    tuple_expr: $ => seq('{', sep($, $.tuple_field, ','), '}'),
 
     tuple_field: $ => choice(
       seq($.ident, ':', $.expr),
@@ -165,8 +165,8 @@ module.exports = grammar({
     macro_body: $ => /macro_body/,
 
     path: $ => choice(
-      seq('::', sep1($.ident, '::')),
-      sep1($.ident, '::')
+      seq('::', sep1($, $.ident, '::')),
+      sep1($, $.ident, '::')
     ),
 
     type: $ => choice(
@@ -174,7 +174,7 @@ module.exports = grammar({
       $.custom_type,
       seq($.type, '[', $.expr, ']'),
       seq($.type, '[', ']'),
-      seq('{', sep($.tuple_field, ','), '}'),
+      seq('{', sep($, $.tuple_field, ','), '}'),
     ),
 
     primitive_type: $ => choice(
@@ -201,10 +201,10 @@ module.exports = grammar({
   }
 });
 
-function sep1(rule, separator) {
-  return seq(rule, repeat(seq(separator, rule)));
+function sep1($, rule, separator) {
+  return seq(rule, repeat(seq(separator, optional($.comment), rule)));
 }
 
-function sep(rule, separator) {
-  return optional(sep1(rule, separator));
+function sep($, rule, separator) {
+  return optional(sep1($, rule, separator));
 }

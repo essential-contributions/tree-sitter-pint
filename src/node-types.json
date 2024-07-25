@@ -23,6 +23,10 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "expr",
           "named": true
         }
@@ -82,6 +86,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "cond_branch",
           "named": true
@@ -217,6 +225,10 @@
       "required": true,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "ident",
           "named": true
         }
@@ -278,6 +290,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "expr",
           "named": true
@@ -488,6 +504,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "macro_name",
           "named": true
         },
@@ -570,6 +590,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "ident",
           "named": true
@@ -670,6 +694,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "expr",
           "named": true
@@ -801,6 +829,10 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "storage_var",
           "named": true
         }
@@ -815,6 +847,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "storage_var",
           "named": true
@@ -905,6 +941,10 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "tuple_field",
           "named": true
         }
@@ -938,6 +978,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "custom_type",
           "named": true
@@ -999,6 +1043,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "ident",
           "named": true
@@ -1156,6 +1204,10 @@
   {
     "type": "bool_ty",
     "named": false
+  },
+  {
+    "type": "comment",
+    "named": true
   },
   {
     "type": "cond",

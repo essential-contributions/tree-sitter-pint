@@ -4,6 +4,7 @@ storage decl 2
 
 storage {
   foo: int,
+  // Test comment
   bar: int,
 }
 
@@ -18,6 +19,7 @@ storage {
           (custom_type
             (path
               (ident)))))
+      (comment)
       (storage_var
         (ident)
         (type
