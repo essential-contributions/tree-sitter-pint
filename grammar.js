@@ -40,6 +40,7 @@ module.exports = grammar({
     predicate_decl: $ => seq('predicate', $.ident, '{', repeat($.predicate_body), '}'),
 
     predicate_body: $ => choice(
+      $.comment,
       $.constraint_decl,
       $.if_decl,
       $.interface_instance,
@@ -142,7 +143,7 @@ module.exports = grammar({
 
     array_expr: $ => seq('[', sep($, $.expr, ','), ']'),
 
-    tuple_expr: $ => seq('{', sep($, $.tuple_field, ','), '}'),
+    tuple_expr: $ => seq('{', sep($, $.tuple_field, ','), optional(','), '}'),
 
     tuple_field: $ => choice(
       seq($.ident, ':', $.type),
