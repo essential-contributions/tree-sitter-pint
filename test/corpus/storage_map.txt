@@ -1,0 +1,44 @@
+===
+storage map
+===
+
+storage {
+	foo: (int => int),
+	bar: (int => (int => int)),
+}
+
+---
+
+(source_file
+  (decl
+    (storage_decl
+      (storage_var
+        (ident)
+        (type
+          (map_type
+            (type
+              (custom_type
+                (path
+                  (ident))))
+            (type
+              (custom_type
+                (path
+                  (ident)))))))
+      (storage_var
+        (ident)
+        (type
+          (map_type
+            (type
+              (custom_type
+                (path
+                  (ident))))
+            (type
+              (map_type
+                (type
+                  (custom_type
+                    (path
+                      (ident))))
+                (type
+                  (custom_type
+                    (path
+                      (ident))))))))))))

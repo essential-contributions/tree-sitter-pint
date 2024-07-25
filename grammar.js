@@ -151,11 +151,6 @@ module.exports = grammar({
       $.expr
     ),
 
-    tuple_field: $ => choice(
-      seq($.ident, ':', $.type),
-      $.type
-    ),
-
     state_init: $ => choice(
       $.storage_access,
       $.expr
@@ -179,9 +174,21 @@ module.exports = grammar({
     type: $ => choice(
       $.primitive_type,
       $.custom_type,
-      seq($.type, '[', $.expr, ']'),
+      $.array_type,
+      $.tuple_type,
+      $.map_type,
+    ),
+
+    array_type: $ => choice(
+      seq($.type, '[', $.type, ']'),
       seq($.type, '[', ']'),
-      seq('{', sep($, $.tuple_field, ','), optional(','), '}'),
+    ),
+
+    tuple_type: $ => seq('{', sep($, $.tuple_type_field, ','), optional(','), '}'),
+
+    tuple_type_field: $ => choice(
+      seq($.ident, ':', $.type),
+      $.type
     ),
 
     primitive_type: $ => choice(
@@ -193,6 +200,8 @@ module.exports = grammar({
     ),
 
     custom_type: $ => $.path,
+
+    map_type: $ => seq('(', $.type, '=>', $.type, ')'),
 
     ident: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 

@@ -18,18 +18,19 @@ type Baz = int;
     (new_type_decl
       (ident)
       (type
-        (tuple_field
-          (ident)
-          (type
-            (custom_type
-              (path
-                (ident)))))
-        (tuple_field
-          (ident)
-          (type
-            (custom_type
-              (path
-                (ident))))))))
+        (tuple_type
+          (tuple_type_field
+            (ident)
+            (type
+              (custom_type
+                (path
+                  (ident)))))
+          (tuple_type_field
+            (ident)
+            (type
+              (custom_type
+                (path
+                  (ident)))))))))
   (decl
     (new_type_decl
       (ident)

@@ -1994,32 +1994,6 @@
         }
       ]
     },
-    "tuple_field": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "ident"
-            },
-            {
-              "type": "STRING",
-              "value": ":"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "type"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "type"
-        }
-      ]
-    },
     "state_init": {
       "type": "CHOICE",
       "members": [
@@ -2196,6 +2170,23 @@
           "name": "custom_type"
         },
         {
+          "type": "SYMBOL",
+          "name": "array_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tuple_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "map_type"
+        }
+      ]
+    },
+    "array_type": {
+      "type": "CHOICE",
+      "members": [
+        {
           "type": "SEQ",
           "members": [
             {
@@ -2208,7 +2199,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "expr"
+              "name": "type"
             },
             {
               "type": "STRING",
@@ -2232,76 +2223,102 @@
               "value": "]"
             }
           ]
+        }
+      ]
+    },
+    "tuple_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
         },
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "{"
-            },
-            {
-              "type": "CHOICE",
+              "type": "SEQ",
               "members": [
                 {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "tuple_field"
-                    },
-                    {
-                      "type": "REPEAT",
-                      "content": {
-                        "type": "SEQ",
+                  "type": "SYMBOL",
+                  "name": "tuple_type_field"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "CHOICE",
                         "members": [
                           {
-                            "type": "STRING",
-                            "value": ","
-                          },
-                          {
-                            "type": "CHOICE",
-                            "members": [
-                              {
-                                "type": "SYMBOL",
-                                "name": "comment"
-                              },
-                              {
-                                "type": "BLANK"
-                              }
-                            ]
-                          },
-                          {
                             "type": "SYMBOL",
-                            "name": "tuple_field"
+                            "name": "comment"
+                          },
+                          {
+                            "type": "BLANK"
                           }
                         ]
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "tuple_type_field"
                       }
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
+                    ]
+                  }
                 }
               ]
             },
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ","
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": ","
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "tuple_type_field": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "ident"
             },
             {
               "type": "STRING",
-              "value": "}"
+              "value": ":"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "type"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type"
         }
       ]
     },
@@ -2333,6 +2350,31 @@
     "custom_type": {
       "type": "SYMBOL",
       "name": "path"
+    },
+    "map_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type"
+        },
+        {
+          "type": "STRING",
+          "value": "=>"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "ident": {
       "type": "PATTERN",

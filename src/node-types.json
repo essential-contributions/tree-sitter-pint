@@ -34,6 +34,21 @@
     }
   },
   {
+    "type": "array_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block",
     "named": true,
     "fields": {},
@@ -553,6 +568,21 @@
     }
   },
   {
+    "type": "map_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "multiplicative_expr",
     "named": true,
     "fields": {},
@@ -983,7 +1013,26 @@
     }
   },
   {
-    "type": "tuple_field",
+    "type": "tuple_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "tuple_type_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tuple_type_field",
     "named": true,
     "fields": {},
     "children": {
@@ -1006,11 +1055,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
-          "type": "comment",
+          "type": "array_type",
           "named": true
         },
         {
@@ -1018,7 +1067,7 @@
           "named": true
         },
         {
-          "type": "expr",
+          "type": "map_type",
           "named": true
         },
         {
@@ -1026,11 +1075,7 @@
           "named": true
         },
         {
-          "type": "tuple_field",
-          "named": true
-        },
-        {
-          "type": "type",
+          "type": "tuple_type",
           "named": true
         }
       ]
