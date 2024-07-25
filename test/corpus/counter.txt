@@ -34,7 +34,8 @@ predicate Increment {
                 (ident))))
           (state_init
             (storage_access
-              (ident)))))
+              (path
+                (ident))))))
       (pred_body
         (decl_constraint
           (expr

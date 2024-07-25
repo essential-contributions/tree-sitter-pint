@@ -1,0 +1,40 @@
+===
+nested arrays
+===
+
+predicate Foo {
+	state bar: int = storage::another_map[3][4][5];
+}
+
+---
+
+(source_file
+  (decl
+    (decl_pred
+      (ident)
+      (pred_body
+        (decl_state
+          (ident)
+          (type
+            (ty_custom
+              (path
+                (ident))))
+          (state_init
+            (storage_access
+              (path
+                (ident))
+              (storage_index
+                (expr
+                  (term
+                    (lit
+                      (number))))
+                (storage_index
+                  (expr
+                    (term
+                      (lit
+                        (number))))
+                  (storage_index
+                    (expr
+                      (term
+                        (lit
+                          (number))))))))))))))

@@ -1341,25 +1341,8 @@
         "type": "CHOICE",
         "members": [
           {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "expr"
-              },
-              {
-                "type": "STRING",
-                "value": "["
-              },
-              {
-                "type": "SYMBOL",
-                "name": "expr"
-              },
-              {
-                "type": "STRING",
-                "value": "]"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "expr_index"
           },
           {
             "type": "SEQ",
@@ -1411,6 +1394,31 @@
                 "name": "number"
               }
             ]
+          }
+        ]
+      }
+    },
+    "expr_index": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expr"
+          },
+          {
+            "type": "STRING",
+            "value": "["
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expr"
+          },
+          {
+            "type": "STRING",
+            "value": "]"
           }
         ]
       }
@@ -1999,17 +2007,8 @@
       ]
     },
     "state_init": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "storage_access"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expr"
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "storage_access"
     },
     "storage_access": {
       "type": "SEQ",
@@ -2019,12 +2018,49 @@
           "value": "storage"
         },
         {
+          "type": "SYMBOL",
+          "name": "path"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "storage_index"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "storage_index": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "STRING",
-          "value": "::"
+          "value": "["
         },
         {
           "type": "SYMBOL",
-          "name": "ident"
+          "name": "expr"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "storage_index"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },

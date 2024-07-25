@@ -108,11 +108,13 @@ module.exports = grammar({
     expr_unary: $ => prec.right(seq(choice('+', '-', '!'), $.expr)),
 
     expr_postfix: $ => prec.left(choice(
-      seq($.expr, '[', $.expr, ']'),
+      $.expr_index,
       seq($.expr, '[', ']'),
       seq($.expr, '.', $.ident),
       seq($.expr, '.', $.number)
     )),
+
+    expr_index: $ => prec.left(seq($.expr, '[', $.expr, ']')),
 
     term: $ => prec(1, choice(
       $.ident_post_state,
@@ -156,12 +158,11 @@ module.exports = grammar({
       $.expr
     ),
 
-    state_init: $ => choice(
-      $.storage_access,
-      $.expr
-    ),
+    state_init: $ => $.storage_access,
 
-    storage_access: $ => seq('storage', '::', $.ident),
+    storage_access: $ => seq('storage', $.path, optional($.storage_index)),
+
+    storage_index: $ => seq('[', $.expr, ']', optional($.storage_index)),
 
     expr_macro_call: $ => seq($.macro_path, optional('macro_tag'), $.macro_args),
 
