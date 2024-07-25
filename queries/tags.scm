@@ -40,6 +40,7 @@
 
 ;; Paths and Identifiers
 (path) @namespace
+(ident_post_state) @special
 (ident) @variable
 
 ;; Expressions

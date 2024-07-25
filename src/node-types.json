@@ -1005,6 +1005,10 @@
           "named": true
         },
         {
+          "type": "ident_post_state",
+          "named": true
+        },
+        {
           "type": "lit",
           "named": true
         },
@@ -1197,10 +1201,6 @@
     "named": false
   },
   {
-    "type": "'",
-    "named": false
-  },
-  {
     "type": "(",
     "named": false
   },
@@ -1330,6 +1330,10 @@
   },
   {
     "type": "ident",
+    "named": true
+  },
+  {
+    "type": "ident_post_state",
     "named": true
   },
   {

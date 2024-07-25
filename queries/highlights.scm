@@ -76,6 +76,7 @@
 ((decl_if) @keyword.control.conditional)
 
 ;; identifiers and paths
+((ident_post_state) @special)
 ((ident) @variable)
 ((path) @namespace)
 ((ty_custom) @type)

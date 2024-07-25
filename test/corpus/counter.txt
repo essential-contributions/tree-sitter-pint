@@ -42,35 +42,31 @@ predicate Increment {
               (expr
                 (expr_cmp
                   (expr
-                    (expr_postfix
+                    (expr_logical_or
                       (expr
-                        (expr_logical_or
+                        (term
                           (expr
-                            (term
+                            (expr_cmp
                               (expr
-                                (expr_cmp
+                                (expr_logical_and
                                   (expr
-                                    (expr_postfix
+                                    (expr_cmp
                                       (expr
-                                        (expr_logical_and
-                                          (expr
-                                            (expr_cmp
-                                              (expr
-                                                (term
-                                                  (ident)))
-                                              (expr
-                                                (term
-                                                  (ident)))))
-                                          (expr
-                                            (term
-                                              (ident)))))))
+                                        (term
+                                          (ident)))
+                                      (expr
+                                        (term
+                                          (ident)))))
                                   (expr
                                     (term
-                                      (lit
-                                        (number))))))))
-                          (expr
-                            (term
-                              (ident)))))))
+                                      (ident_post_state)))))
+                              (expr
+                                (term
+                                  (lit
+                                    (number))))))))
+                      (expr
+                        (term
+                          (ident_post_state)))))
                   (expr
                     (term
                       (ident)))))

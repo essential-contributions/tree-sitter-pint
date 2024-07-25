@@ -30,10 +30,8 @@ predicate Increment {
               (expr
                 (expr_cmp
                   (expr
-                    (expr_postfix
-                      (expr
-                        (term
-                          (ident)))))
+                    (term
+                      (ident_post_state)))
                   (expr
                     (term
                       (ident)))))

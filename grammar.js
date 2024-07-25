@@ -111,11 +111,11 @@ module.exports = grammar({
       seq($.expr, '[', $.expr, ']'),
       seq($.expr, '[', ']'),
       seq($.expr, '.', $.ident),
-      seq($.expr, '.', $.number),
-      seq($.expr, "'")
+      seq($.expr, '.', $.number)
     )),
 
     term: $ => prec(1, choice(
+      $.ident_post_state,
       $.ident,
       $.lit,
       seq('(', $.expr, ')'),
@@ -209,6 +209,8 @@ module.exports = grammar({
     ty_custom: $ => $.path,
 
     ty_map: $ => seq('(', $.type, '=>', $.type, ')'),
+
+    ident_post_state: $ => /[a-zA-Z_][a-zA-Z0-9_]*'/,
 
     ident: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
