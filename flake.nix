@@ -22,7 +22,9 @@
       # Add an overlay so that the grammar can be merged into the nixpkgs set.
       overlays = {
         tree-sitter-pint = final: prev: {
-          tree-sitter-grammars.tree-sitter-pint = prev.callPackage ./default.nix { };
+          tree-sitter-grammars = prev.tree-sitter-grammars // {
+            tree-sitter-pint = prev.callPackage ./default.nix { };
+          };
         };
         default = inputs.self.overlays.tree-sitter-pint;
       };
